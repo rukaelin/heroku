@@ -4,6 +4,7 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 const { Pool } = require('pg');
 const { setupSchedules } = require('./schedule');
+const { sendMessage } = require('./telegram');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -17,7 +18,10 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/health', (req, res) => res.sendStatus(200))
+  .get('/health', (req, res) => {
+    sendMessage('health endpoint called');
+    res.sendStatus(200)
+  })
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();

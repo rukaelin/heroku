@@ -9,8 +9,7 @@ module.exports = {
                         text: message
                     })
                 .then(res => {
-                    console.log(`statusCode: ${res.status}`);
-                    console.log(res);
+                    console.log(`message sent: ${message}`);
                 })
                 .catch(error => {
                     console.error(error);
