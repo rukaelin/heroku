@@ -3,15 +3,13 @@ const axios = require('axios');
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const { Pool } = require('pg');
+const { setupSchedules } = require('./schedule');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
-
-import { setupSchedules } from './schedule';
-
 setupSchedules();
 
 express()
