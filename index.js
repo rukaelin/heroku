@@ -10,6 +10,23 @@ const pool = new Pool({
   }
 });
 
+function sendMessage(message)
+  {
+    axios
+      .post('https://api.telegram.org/bot'+process.env.TELEGRAM_TOKEN+'/sendMessage',
+        {
+          chat_id: process.env.TELEGRAM_CHAT_ID,
+          text: message
+        })
+      .then(res => {
+        console.log(`statusCode: ${res.status}`);
+        console.log(res);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
@@ -29,22 +46,11 @@ express()
   })
   .get('/telegram', async (req, res) => {
     try {
-      axios
-        .post('https://api.telegram.org/bot'+process.env.TELEGRAM_TOKEN+'/sendMessage',
-          {
-            chat_id: process.env.TELEGRAM_CHAT_ID,
-            text: 'test text'
-          })
-        .then(res => {
-          console.log(`statusCode: ${res.status}`);
-          console.log(res);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+     sendMessage('test message');
+     res.render('pages/index')
     } catch (err) {
       console.error(err);
       res.send('Error ' + err);
     }
   })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
