@@ -11,7 +11,6 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-sendTodaysCssGoodie();
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -19,7 +18,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/health', (req, res) => {
-    sendMessage('health endpoint called');
+    sendTodaysCssGoodie();
     res.sendStatus(200)
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
