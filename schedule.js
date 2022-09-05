@@ -1,12 +1,4 @@
 module.exports = {
-    setupSchedules: function () {
-        //const { sendMessage } = require('./telegram');
-        //const schedule = require('node-schedule');
-        // schedule.scheduleJob('*/10 * * * *', () => {
-        //     sendMessage("it is currently " + (new Date()).toString())
-        // });
-        console.log(module.exports.sendTodaysCssGoodie());
-    },
     sendTodaysCssGoodie: function () {
         const axios = require('axios');
         axios.get('https://enjoy365.ch/top-deals/').then(response => {
