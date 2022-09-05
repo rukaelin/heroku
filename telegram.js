@@ -14,7 +14,7 @@ module.exports = {
         axios
             .post('https://api.telegram.org/bot' + process.env.TELEGRAM_TOKEN + '/sendMessage',
                 {
-                    chat_id: recipient = 'Sarah' ? process.env.TELEGRAM_CHAT_ID_SARAH : process.env.TELEGRAM_CHAT_ID,
+                    chat_id: recipient === 'Sarah' ? process.env.TELEGRAM_CHAT_ID_SARAH : process.env.TELEGRAM_CHAT_ID,
                     text: message
                 })
             .then(res => {
