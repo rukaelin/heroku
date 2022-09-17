@@ -9,7 +9,7 @@ module.exports = {
             cssGoodieName = res[2];
 
             const { sendMessage } = require('./telegram');
-            sendMessage("todays CSS goodie is \"" + cssGoodieName + '\", details here ' + cssGoodieUrl);
+            //sendMessage("todays CSS goodie is \"" + cssGoodieName + '\", details here ' + cssGoodieUrl);
 
             console.log(cssGoodieName);
             console.log(cssGoodieUrl);
